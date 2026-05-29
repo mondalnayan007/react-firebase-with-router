@@ -8,6 +8,7 @@ import MainLayout from './Layouts/MainLayout/MainLayout';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Home/Login/Login';
 import Products from './Pages/Products/Products';
+import ProductDetails from './Pages/ProductDetails/ProductDetails';
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
       {
         path:'/products',
         Component: Products
+      },
+      {
+        path:'/product-details/:id',
+        loader : ({params })=>{return fetch(`https://fakestoreapi.com/products/${params.id}`)},
+        Component: ProductDetails
       }
     ]
   },
