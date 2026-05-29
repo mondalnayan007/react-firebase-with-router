@@ -4,12 +4,26 @@ import './index.css'
 
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
+import MainLayout from './Layouts/MainLayout/MainLayout';
+import Home from './Pages/Home/Home';
+import Login from './Pages/Home/Login/Login';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World</div>,
+    element: <MainLayout></MainLayout>,
+    children:[
+      {
+        index: true,
+        path:'/',
+        Component: Home
+      },
+      {
+        path:'/login',
+        Component: Login
+      }
+    ]
   },
 ]);
 
