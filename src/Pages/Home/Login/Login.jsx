@@ -1,14 +1,17 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import React from 'react';
 import { auth } from '../../../firebase/firebase.config';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 
 
 const Login = () => {
 
     const navigate = useNavigate();
-    
+     const googleProvider = new GoogleAuthProvider();
+
+    const gitHubProvider = new GithubAuthProvider();
+   
     
 
     const handelLogin = (e) => {
@@ -25,15 +28,31 @@ const Login = () => {
         
     };
     const handleGoogleLogin = () => {
-        
+         // alert('google login is clicked !!!!')
+
+        signInWithPopup(auth,googleProvider)
+        .then(res =>{
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
     };
 
     const handleGitHubLogin = () => {
-       
+        signInWithPopup(auth,gitHubProvider)
+               .then(res =>{console.log(res);})
+               .catch(err => console.log(err));
     };
 
     const handleSignOut = () => {
-       
+       signOut(auth)
+       .then(res => {
+          alert('sign Out successful !!!')
+          console.log(res);
+       })
+       .catch(err => {console.log(err);})
     };
 
     return (
@@ -41,7 +60,7 @@ const Login = () => {
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col ">
                     <div className="text-center ">
-                        <h1 className="text-5xl font-bold">Register</h1>
+                        <h1 className="text-5xl font-bold">Login</h1>
                         <p className="py-6">
                             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
                             quasi. In deleniti eaque aut repudiandae et a id nisi.
@@ -61,7 +80,9 @@ const Login = () => {
                             </form>
                             <button onClick={handleGoogleLogin} className='border py-2 px-4 rounded cursor-pointer'>Login with google </button>
                             <button onClick={handleGitHubLogin} className='border py-2 px-4 rounded cursor-pointer'>Login with GitHub </button>
+                            <button onClick={handleSignOut} className='border py-2 px-4 rounded cursor-pointer'>Logout</button>
                         </div>
+                        <p className='text-center mb-4'>New in this website ?? <Link className='underline text-blue-600' to={'/register'}>Register</Link></p>
                     </div>
                 </div>
             </div>

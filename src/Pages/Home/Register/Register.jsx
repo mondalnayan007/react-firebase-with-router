@@ -1,7 +1,7 @@
 import React from 'react';
 import {createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import { auth } from '../../../firebase/firebase.config';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 
 const Register = () => {
@@ -77,6 +77,7 @@ const Register = () => {
                             <button onClick={handleGoogleLogin} className='border py-2 px-4 rounded cursor-pointer'>Login with google </button>
                             <button onClick={handleGitHubLogin} className='border py-2 px-4 rounded cursor-pointer'>Login with GitHub </button>
                         </div>
+                        <p className='text-center mb-4'>Already have an account ?? <Link className='underline text-blue-600' to={'/login'}>Login</Link></p>
                     </div>
                 </div>
             </div>
