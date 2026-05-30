@@ -1,5 +1,5 @@
 import React from 'react';
-import {createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
+import {createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import { auth } from '../../../firebase/firebase.config';
 import { useNavigate } from 'react-router';
 
@@ -8,6 +8,8 @@ const Register = () => {
 
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider();
+
+    const gitHubProvider = new GithubAuthProvider();
    
 
      const handelRegister =(e)=>{
@@ -41,6 +43,14 @@ const Register = () => {
 
      }
 
+
+
+     const handleGitHubLogin =()=>{
+        signInWithPopup(auth,gitHubProvider)
+        .then(res =>{console.log(res);})
+        .catch(err => console.log(err));
+     }
+
     return (
         <div>
             <div className="hero bg-base-200 min-h-screen">
@@ -65,6 +75,7 @@ const Register = () => {
                                 </fieldset>
                             </form>
                             <button onClick={handleGoogleLogin} className='border py-2 px-4 rounded cursor-pointer'>Login with google </button>
+                            <button onClick={handleGitHubLogin} className='border py-2 px-4 rounded cursor-pointer'>Login with GitHub </button>
                         </div>
                     </div>
                 </div>
