@@ -6,7 +6,8 @@ import {
     signOut, 
     onAuthStateChanged, 
     GithubAuthProvider,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
 } from "firebase/auth";
 import  { auth } from '../firebase/firebase.config';
  // তোমার ফায়ারবেস কনফিগ ফাইলের পাথ
@@ -29,6 +30,11 @@ export const AuthProvider = ({ children }) => {
     const createUser =(email,password)=>{
             setLoading(true);
             return createUserWithEmailAndPassword(auth,email,password)
+    }
+
+    const loginWithEmail = (email,password)=>{
+        setLoading(true);
+        return signInWithEmailAndPassword(auth,email,password);
     }
 
     // 🚀 গুগল দিয়ে লগইন করার ফাংশন
@@ -65,6 +71,7 @@ export const AuthProvider = ({ children }) => {
         user,
         loading,
         createUser,
+        loginWithEmail,
         loginWithGoogle,
         loginWithGithub,
         logout
