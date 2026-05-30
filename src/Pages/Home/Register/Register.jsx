@@ -1,7 +1,13 @@
 import React from 'react';
+import {createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
+import { auth } from '../../../firebase/firebase.config';
+import { useNavigate } from 'react-router';
 
 
 const Register = () => {
+
+    const navigate = useNavigate();
+    const googleProvider = new GoogleAuthProvider();
    
 
      const handelRegister =(e)=>{
@@ -9,7 +15,30 @@ const Register = () => {
 
         const email = e.target.email.value ;
         const password = e.target.password.value ;
+        createUserWithEmailAndPassword(auth,email,password)
+        .then(res =>{
+            alert('User successfully created !!!');
+            navigate('/');
+            console.log(res);
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+
        
+     }
+
+     const handleGoogleLogin =()=>{
+        // alert('google login is clicked !!!!')
+
+        signInWithPopup(auth,googleProvider)
+        .then(res =>{
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
      }
 
     return (
@@ -17,7 +46,7 @@ const Register = () => {
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col ">
                     <div className="text-center ">
-                        <h1 className="text-5xl font-bold">Login now!</h1>
+                        <h1 className="text-5xl font-bold">Register</h1>
                         <p className="py-6">
                             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
                             quasi. In deleniti eaque aut repudiandae et a id nisi.
@@ -35,6 +64,7 @@ const Register = () => {
                                     <button className="btn btn-neutral mt-4">Register</button>
                                 </fieldset>
                             </form>
+                            <button onClick={handleGoogleLogin} className='border py-2 px-4 rounded cursor-pointer'>Login with google </button>
                         </div>
                     </div>
                 </div>
