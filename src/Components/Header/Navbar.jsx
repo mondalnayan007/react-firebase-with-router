@@ -1,12 +1,13 @@
-import React  from 'react';
+import React, { use }  from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../../Context/AuthContext';
 
 
 
 const Navbar = () => {
 
-  // const { user } = useAuth();
-  // console.log(user);
+ const {user} = use(AuthContext)
+ console.log(user);
 
   
   return (
@@ -63,12 +64,21 @@ const Navbar = () => {
             {/* লগইন বাটন */}
             
              
+                {
+                  user ? <Link
+                  to="/login"
+                  className="   text-sm font-medium px-4 py-2 rounded-lg transition-colors shadow-sm"
+                >
+                  Logout
+                </Link> 
+                :
                 <Link
                   to="/login"
                   className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors shadow-sm"
                 >
                   Login
                 </Link>
+                }
             
           </div>
 
