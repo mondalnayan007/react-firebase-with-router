@@ -1,11 +1,14 @@
 import { GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
-import React from 'react';
+import React, { use } from 'react';
 import { auth } from '../../../firebase/firebase.config';
 import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../../../Context/AuthContext';
 
 
 
 const Login = () => {
+
+    const {signInUser } = use(AuthContext)
 
     const navigate = useNavigate();
      const googleProvider = new GoogleAuthProvider();
@@ -19,7 +22,7 @@ const Login = () => {
 
         const email = e.target.email.value ;
         const password = e.target.password.value ;
-        signInWithEmailAndPassword(auth,email,password)
+        signInUser(email,password)
         .then(res=>{
             alert('Login Successful !!!');
             navigate('/');

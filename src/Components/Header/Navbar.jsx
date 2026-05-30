@@ -1,6 +1,6 @@
-import React, { use } from 'react';
+import React  from 'react';
 import { Link } from 'react-router';
-import { AuthContext } from '../../Context/AuthContext';
+
 
 
 const Navbar = () => {
@@ -8,8 +8,7 @@ const Navbar = () => {
   // const { user } = useAuth();
   // console.log(user);
 
-  const authInfo = use(AuthContext);
-  console.log("From Navabr" ,authInfo);
+  
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

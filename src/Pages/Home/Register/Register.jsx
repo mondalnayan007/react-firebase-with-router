@@ -1,10 +1,14 @@
-import React from 'react';
-import {createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
+import React, { use } from 'react';
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import { auth } from '../../../firebase/firebase.config';
 import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../../../Context/AuthContext';
 
 
 const Register = () => {
+
+    const {createUser} = use(AuthContext);
+        
 
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider();
@@ -17,7 +21,7 @@ const Register = () => {
 
         const email = e.target.email.value ;
         const password = e.target.password.value ;
-        createUserWithEmailAndPassword(auth,email,password)
+        createUser(email,password)
         .then(res =>{
             alert('User successfully created !!!');
             navigate('/');
