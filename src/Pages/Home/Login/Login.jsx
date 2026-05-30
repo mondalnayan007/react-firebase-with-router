@@ -1,36 +1,20 @@
 import React from 'react';
-import { useAuth } from '../../../Context/AuthContext'; // 👈 ১. কাস্টম হুক ইম্পোর্ট করলাম
-import { useNavigate } from 'react-router'; // যদি লগইন শেষে হোমে পাঠাতে চাও
+
 
 const Login = () => {
-    // 👈 ২. গ্লোবাল কনটেক্সট থেকে ইউজার এবং প্রয়োজনীয় সব ফাংশন বের করে নিলাম
-    const { user, loginWithGoogle, loginWithGithub, logout } = useAuth();
-    const navigate = useNavigate();
+    
+    
 
     const handleGoogleSignIn = () => {
-        loginWithGoogle()
-            .then(res => {
-                console.log("Google Login Success:", res.user);
-                navigate('/'); // হোমে রিডাইরেক্ট (ঐচ্ছিক)
-            })
-            .catch((err) => console.log(err));
+        
     };
 
     const handleSignInWithGitHub = () => {
-        loginWithGithub()
-            .then(res => {
-                console.log("GitHub Login Success:", res.user);
-                navigate('/'); // হোমে রিডাইরেক্ট (ঐচ্ছিক)
-            })
-            .catch(err => console.log(err));
+       
     };
 
     const handleSignOut = () => {
-        logout()
-            .then(() => {
-                alert("Sign Out successful !!!!");
-            })
-            .catch(err => console.log(err));
+       
     };
 
     return (
@@ -58,10 +42,10 @@ const Login = () => {
                                     <input type="password" className="input" placeholder="Password" />
                                     <div><a className="link link-hover">Forgot password?</a></div>
                                     <button className="btn btn-neutral mt-4">Login</button>
-                                    {
-                                        user ?
-                                            <button className='btn border py-2 px-4 rounded cursor-pointer' onClick={handleSignOut}>Sign Out</button>
-                                            :
+                                    
+                                        
+                                            {/* <button className='btn border py-2 px-4 rounded cursor-pointer' onClick={handleSignOut}>Sign Out</button>
+                                             */}
                                             <div className='flex flex-col gap-3'>
                                                 {/* Google Login Button */}
                                                 <button onClick={handleGoogleSignIn} className="flex items-center cursor-pointer justify-center gap-3 bg-white text-gray-700 font-medium border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-sm transition-colors duration-200">
@@ -79,7 +63,7 @@ const Login = () => {
                                                     Sign In With GitHub
                                                 </button>
                                             </div>
-                                    }
+                                    
 
                                 </fieldset>
                             </form>

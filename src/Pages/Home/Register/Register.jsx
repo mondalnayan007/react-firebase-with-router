@@ -1,23 +1,15 @@
 import React from 'react';
-import { useAuth } from '../../../Context/AuthContext';
-import { useNavigate } from 'react-router';
+
 
 const Register = () => {
-    const {createUser} = useAuth();
-    const navigate = useNavigate();
+   
 
      const handelRegister =(e)=>{
         e.preventDefault();
 
         const email = e.target.email.value ;
         const password = e.target.password.value ;
-        createUser(email,password)
-        .then(res => {
-            console.log(res.user);
-            navigate('/');
-        })
-        .catch(err => {console.log(err);})    
-        console.log(email,password);
+       
      }
 
     return (
