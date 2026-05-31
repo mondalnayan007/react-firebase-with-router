@@ -13,6 +13,8 @@ import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import Register from './Pages/Home/Register/Register';
 import AuthProvider from './Context/AuthProvider';
 
+import Phones from './Pages/Phone/Phones';
+
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,11 @@ const router = createBrowserRouter([
       {
         path:'/register',
         Component: Register
+      },
+      {
+        path:'/phones',
+        loader : ()=>fetch('http://localhost:4000/phones'),
+        Component: Phones
       }
     ]
   },

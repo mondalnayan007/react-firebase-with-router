@@ -45,6 +45,7 @@ const Navbar = () => {
             <div className="hidden sm:flex items-center gap-5 text-sm font-medium text-gray-600">
               <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link>
               <Link to="/products" className="hover:text-blue-600 transition-colors">Shop</Link>
+              <Link to="/phones" className="hover:text-blue-600 transition-colors">Phone</Link>
               <Link to="/login" className="hover:text-blue-600 transition-colors">Login</Link>
               <Link to="/register" className="hover:text-blue-600 transition-colors">Register</Link>
             </div>
