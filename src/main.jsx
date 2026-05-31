@@ -14,6 +14,7 @@ import Register from './Pages/Home/Register/Register';
 import AuthProvider from './Context/AuthProvider';
 
 import Phones from './Pages/Phone/Phones';
+import PhoneDetails from './Pages/Phone/PhoneDetails';
 
 
 const router = createBrowserRouter([
@@ -47,7 +48,12 @@ const router = createBrowserRouter([
         path:'/phones',
         loader : ()=>fetch('http://localhost:4000/phones'),
         Component: Phones
-      }
+      },
+      {
+        path:'/phone-details/:id',
+        loader : ({params })=>{return fetch(`http://localhost:4000/phones/${params.id}`)},
+        Component: PhoneDetails
+      },
     ]
   },
 ]);
